@@ -2,7 +2,6 @@
 {% block content %}
     <div class="field">
     <label class="label">Things to do:</label>
-    <h1>Things to do:</h1>
         <table class="table table is-bordered  is-striped
                 is-hoverable " style="width:100%">
 
@@ -11,20 +10,24 @@
                 <th>Objekt</th>
                 <th>Prüfpunkt</th>
                 <th>OK</th>
-                <th>geprüft am</th>
                 <th>Mangel</th>
                 <th>Frist zu Behebung</th>
-                <th>Behoben am</th>
+                <th>Behoben/ Geprüft am</th>
                 <th>Durchgeführt von</th>
-
-                
                 
                 
             </tr>
             {% for item in object_list %}
             <tr>
-                <td>{{ item.text }}</td>
-                <td>{{ item.due_date }}</td>
+                <td>{{ item.checkliste }}</td>
+                <td>{{ item.objekt }}</td>
+                <td>{{ item.pruefpunkt }}</td>
+                <td>{{ item.ok }}</td>
+                <td>{{ item.mangel}}</td>
+                <td>{{ item.frist }}</td>
+                <td>{{ item.behoben }}</td>
+                <td>{{ item.von }}</td>
+            
             
             
             
