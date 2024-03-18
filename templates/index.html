@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="field">
-    <label class="label">Things to do:</label>
+    <label class="label">Things to do {% url 'admin:index' %} :</label>
         <table class="table table is-bordered  is-striped
                 is-hoverable " style="width:100%">
+        <a href="{% url 'admin:index' %}">link to admin panel</a>
 
+        
             <tr>
                 <th>Checkliste</th>
                 <th>Objekt</th>
@@ -14,8 +16,8 @@
                 <th>Frist zu Behebung</th>
                 <th>Behoben/ Geprüft am</th>
                 <th>Durchgeführt von</th>
-                
-                
+
+
             </tr>
             {% for item in object_list %}
             <tr>
@@ -27,12 +29,12 @@
                 <td>{{ item.frist }}</td>
                 <td>{{ item.behoben }}</td>
                 <td>{{ item.von }}</td>
-            
-            
-            
-            
+
+
+
+
             </tr>
-                
+
             {% endfor %}
         </table>
     </div>

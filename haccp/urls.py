@@ -5,3 +5,5 @@ urlpatterns = [
     path("", views.AllToDos.as_view(), name="index"),
     path("today/", views.TodayToDos.as_view(), name="today")
 ]
+
+#/admin/haccp/todoitem/add/
