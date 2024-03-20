@@ -4,24 +4,24 @@ from django.utils import timezone
 
 
 class Checkliste(models.Model):
-    liste = models.CharField(max_length=80)
+    name = models.CharField(max_length=80)
 
     def __str__(self):
-        return f"{self.liste}"
+        return f"{self.name}"
 
 
 class ObjektOrt(models.Model):
-    eintrag = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.eintrag}"
+        return f"{self.name}"
 
 
 class Audit(models.Model):
-    pruefung = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.pruefung}"
+        return f"{self.name}"
 
 
 class oknok(models.TextChoices):
@@ -29,18 +29,19 @@ class oknok(models.TextChoices):
     nok = "2", "nicht in Ordnung"
 
 
+
 class MangelArt(models.Model):
-    mangel = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.mangel}"
+        return f"{self.name}"
 
 
 class Benutzer(models.Model):
-    benutzer = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.benutzer}"
+        return f"{self.name}"
 
 
 class Audit_Ereignis(models.Model):
@@ -48,8 +49,8 @@ class Audit_Ereignis(models.Model):
     objektort = models.ForeignKey(ObjektOrt, on_delete=models.CASCADE)
     pruefpunkt = models.ForeignKey(Audit, on_delete=models.CASCADE)
     ok = models.CharField(max_length=3, choices=oknok.choices, default=oknok.ok)
-    mangel = models.ForeignKey(MangelArt, on_delete=models.CASCADE, blank=True,null=True)
-    frist = models.DateField(blank=True,null=True)
+    mangel = models.ForeignKey(MangelArt, on_delete=models.CASCADE,)
+    frist = models.DateField()
     behoben = models.DateTimeField()
     von = models.ForeignKey(Benutzer, on_delete=models.CASCADE)
 

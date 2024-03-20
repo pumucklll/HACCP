@@ -102,15 +102,14 @@ def import_csv(request):
 
             for row in csv_reader:
                 Audit_Ereignis.objects.create(
-                    checkliste=row["checkliste"],
-                    objektort=row['objektort'],
-                    pruefpunkt=row['pruefpunkt'],
+                    checkliste=Checkliste.objects.get(name=row["checkliste"]),
+                    pruefpunkt=Audit.objects.get(name=row['pruefpunkt']),
                     ok=row['ok'],
-                    mangel=row['mangel'],
+                    objektort=ObjektOrt.objects.get(name=row['objektort']),
+                    mangel=MangelArt.objects.get(name=row['mangel']),
                     frist=row['frist'],
                     behoben=row['behoben'],
-                    von=['ok'],
-
+                    von=Benutzer.objects.get(name=row['von']),
                 )
 
             return redirect('csv/home')  # Redirect to a success page
