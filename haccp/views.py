@@ -4,7 +4,7 @@ from .models import Audit_Ereignis
 from django.http import HttpResponse
 from django.shortcuts import render
 from bs4 import BeautifulSoup
-from .models import Checkliste, ObjektOrt, Audit, MangelArt, Benutzer, Audit_Ereignis
+from .models import Checkliste, ObjektOrt, Audit, MangelArt, Benutzer, Audit_Ereignis, oknok
 from django.shortcuts import render, redirect
 from .forms import CSVImportForm
 import csv
@@ -104,7 +104,7 @@ def import_csv(request):
                 Audit_Ereignis.objects.create(
                     checkliste=Checkliste.objects.get(name=row["checkliste"]),
                     pruefpunkt=Audit.objects.get(name=row['pruefpunkt']),
-                    ok=row['ok'],
+                    ok=oknok.objects.get(name=row['ok']),
                     objektort=ObjektOrt.objects.get(name=row['objektort']),
                     mangel=MangelArt.objects.get(name=row['mangel']),
                     frist=row['frist'],

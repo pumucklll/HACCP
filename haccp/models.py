@@ -26,7 +26,7 @@ class Audit(models.Model):
 
 
 class oknok(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50,)
 
     def __str__(self):
         return f"{self.name}"
@@ -57,7 +57,7 @@ class Audit_Ereignis(models.Model):
     checkliste = models.ForeignKey(Checkliste, on_delete=models.CASCADE)
     objektort = models.ForeignKey(ObjektOrt, on_delete=models.CASCADE)
     pruefpunkt = models.ForeignKey(Audit, on_delete=models.CASCADE)
-    ok = models.ForeignKey(oknok, on_delete=models.CASCADE,to_field='name', default='OK')
+    ok = models.ForeignKey(oknok, on_delete=models.CASCADE)
     mangel = models.ForeignKey(MangelArt, on_delete=models.CASCADE,)
     frist = models.DateField()
     behoben = models.DateTimeField()
