@@ -24,9 +24,18 @@ class Audit(models.Model):
         return f"{self.name}"
 
 
-class oknok(models.TextChoices):
-    ok = "1", "in Ordnung"
-    nok = "2", "nicht in Ordnung"
+
+class oknok(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+
+#class oknok(models.TextChoices):
+#    ok = "1", "in Ordnung"
+#    nok = "2", "nicht in Ordnung"
 
 
 
@@ -48,7 +57,7 @@ class Audit_Ereignis(models.Model):
     checkliste = models.ForeignKey(Checkliste, on_delete=models.CASCADE)
     objektort = models.ForeignKey(ObjektOrt, on_delete=models.CASCADE)
     pruefpunkt = models.ForeignKey(Audit, on_delete=models.CASCADE)
-    ok = models.CharField(max_length=3, choices=oknok.choices, default=oknok.ok)
+    ok = models.ForeignKey(oknok, on_delete=models.CASCADE,to_field='name', default='OK')
     mangel = models.ForeignKey(MangelArt, on_delete=models.CASCADE,)
     frist = models.DateField()
     behoben = models.DateTimeField()
