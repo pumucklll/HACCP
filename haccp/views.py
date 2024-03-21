@@ -32,24 +32,6 @@ def home(request):
     return render(request, 'csv/home.html')
 
 
-def export_csv(request):
-    # Your data retrieval logic goes here
-    data = [
-        ['Name', 'Age', 'Email'],
-        ['John Doe', 30, 'john@example.com'],
-        ['Jane Smith', 25, 'jane@example.com'],
-        # Add your data here
-    ]
-
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="exported_data.csv"'
-
-    writer = csv.writer(response)
-    for row in data:
-        writer.writerow(row)
-
-    return response
-
 
 
 
@@ -69,28 +51,7 @@ def export_query_to_csv(request):
     return response
 
 
-def export_html_to_csv(request):
-    html = """
-    <!-- Your HTML table content here -->
-    """
-    soup = BeautifulSoup(html, 'html.parser')
-    data = []
 
-    for row in soup.find_all('tr'):
-        cols = row.find_all('td')
-        data.append([col.text for col in cols])
-
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="/table_data.csv"'
-
-    writer = csv.writer(response)
-    for row in data:
-        writer.writerow(row)
-
-    return response
-
-
-# views.py
 
 
 def import_csv(request):
